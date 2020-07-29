@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "27400272449",
+    "firebase_url": "https://flutterauth-35713.firebaseio.com",
+    "project_id": "flutterauth-35713",
+    "storage_bucket": "flutterauth-35713.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:27400272449:android:450614124b10c5523424c0",
+        "android_client_info": {
+          "package_name": "com.raghav.myapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "27400272449-evnmq39hr04ofl6655gv4funft03mlgr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDd8_4P7mkWKXjPX0zMo1ZP-bWddteFbCc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "27400272449-evnmq39hr04ofl6655gv4funft03mlgr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
