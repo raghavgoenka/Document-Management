@@ -1,6 +1,7 @@
-# myapp
+# Document Management App
 
 A new Flutter project.
+This app helps you to store your pdf according to the subject that you provide.
 
 ## Getting Started
 
