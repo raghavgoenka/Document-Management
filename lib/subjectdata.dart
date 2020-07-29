@@ -142,6 +142,31 @@ class _SubjectData extends State<Subject> {
     return qn.documents;
   }
 
+  deleteFirebasePdf(documentPdf) async {
+    print(documentPdf);
+    Firestore.instance
+        .collection(emailofUser)
+        .document(indexSubject)
+        .collection('pdfs')
+        .document(documentPdf)
+        .delete()
+        .then((value) {
+      Flushbar(
+        forwardAnimationCurve: Curves.decelerate,
+        reverseAnimationCurve: Curves.easeIn,
+        title: "Success",
+        backgroundColor: Colors.black26,
+        message: "File deleted successfully",
+        duration: Duration(seconds: 3),
+      )..show(context);
+      setState(() {
+        getNotesofSubject();
+      });
+    }).catchError((e) {
+      print(e);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -198,15 +223,29 @@ class _SubjectData extends State<Subject> {
                             onLongPress: () {
                               final String path =
                                   snapshot.data[index].data['Url'];
-                              print(path);
 
-                              Share.text('my text title', path, 'text/plain');
-                              // SimpleShare.share(uri: path.toString());
+                              Share.text('File Sharing', path, 'text');
                             },
                             leading: Icon(Icons.note, size: 50),
                             title: Text(snapshot.data[index].data['FileName']
                                 .toString()),
                             subtitle: Text(indexSubject),
+                            trailing: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                IconButton(
+                                  icon: Icon(
+                                    Icons.delete_outline,
+                                    size: 25.0,
+                                    color: Colors.brown[900],
+                                  ),
+                                  onPressed: () {
+                                    deleteFirebasePdf(
+                                        snapshot.data[index].documentID);
+                                  },
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
