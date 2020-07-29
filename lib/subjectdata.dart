@@ -7,6 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'pdf_viewer.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:esys_flutter_share/esys_flutter_share.dart';
 
 class Subject extends StatefulWidget {
   final String indexSubject;
@@ -193,6 +194,14 @@ class _SubjectData extends State<Subject> {
                                     builder: (context) => new PdfView(
                                         snapshot.data[index].data['Url'])),
                               );
+                            },
+                            onLongPress: () {
+                              final String path =
+                                  snapshot.data[index].data['Url'];
+                              print(path);
+
+                              Share.text('my text title', path, 'text/plain');
+                              // SimpleShare.share(uri: path.toString());
                             },
                             leading: Icon(Icons.note, size: 50),
                             title: Text(snapshot.data[index].data['FileName']

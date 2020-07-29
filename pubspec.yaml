@@ -44,6 +44,10 @@ dependencies:
   device_preview:
   firebase_ml_vision:
   translator:
+  image_cropper:
+  esys_flutter_share:
+  
+  
   
   
   flutter:

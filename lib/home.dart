@@ -10,7 +10,7 @@ import 'subjectdata.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_ml_vision/firebase_ml_vision.dart';
-import 'package:translator/translator.dart';
+import 'package:image_cropper/image_cropper.dart';
 
 class HomeView extends StatefulWidget {
   final String userEmail;
@@ -200,13 +200,35 @@ class _HomeViewState extends State<HomeView> {
                   icon: Icon(Icons.camera),
                   label: Text("Camera"),
                   onPressed: () async {
-                    File image;
+                    File image, cropped;
                     final picker = ImagePicker();
                     final pickedFile =
                         await picker.getImage(source: ImageSource.camera);
+                    if (pickedFile.path != null) {
+                      cropped = await ImageCropper.cropImage(
+                          sourcePath: pickedFile.path,
+                          aspectRatioPresets: [
+                            CropAspectRatioPreset.square,
+                            CropAspectRatioPreset.ratio3x2,
+                            CropAspectRatioPreset.original,
+                            CropAspectRatioPreset.ratio4x3,
+                            CropAspectRatioPreset.ratio16x9
+                          ],
+                          compressQuality: 100,
+                          maxHeight: 700,
+                          maxWidth: 700,
+                          compressFormat: ImageCompressFormat.jpg,
+                          androidUiSettings: AndroidUiSettings(
+                              toolbarColor: Colors.green,
+                              toolbarTitle: "Image Cropper",
+                              initAspectRatio: CropAspectRatioPreset.original,
+                              lockAspectRatio: false,
+                              statusBarColor: Colors.blue,
+                              backgroundColor: Colors.white));
+                    }
                     Navigator.pop(context);
                     setState(() {
-                      image = File(pickedFile.path);
+                      image = File(cropped.path);
                     });
                     picked(image);
                   },
@@ -215,13 +237,27 @@ class _HomeViewState extends State<HomeView> {
                   icon: Icon(Icons.photo),
                   label: Text("Gallery"),
                   onPressed: () async {
-                    File image;
+                    File image, cropped;
                     final picker = ImagePicker();
                     final pickedFile =
                         await picker.getImage(source: ImageSource.gallery);
+                    if (pickedFile.path != null) {
+                      cropped = await ImageCropper.cropImage(
+                          sourcePath: pickedFile.path,
+                          aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
+                          compressQuality: 100,
+                          maxHeight: 700,
+                          maxWidth: 700,
+                          compressFormat: ImageCompressFormat.jpg,
+                          androidUiSettings: AndroidUiSettings(
+                              toolbarColor: Colors.green,
+                              toolbarTitle: "Image Cropper",
+                              statusBarColor: Colors.blue,
+                              backgroundColor: Colors.white));
+                    }
                     Navigator.pop(context);
                     setState(() {
-                      image = File(pickedFile.path);
+                      image = File(cropped.path);
                     });
                     picked(image);
                   },
@@ -271,15 +307,17 @@ class _HomeViewState extends State<HomeView> {
                     ),
             ),
           ),
-          RaisedButton(
-            elevation: 10,
-            child: Text('Text Recognition'),
+          RaisedButton.icon(
+            icon: Icon(Icons.scanner),
+            elevation: 0,
+            color: Colors.green[400],
+            label: Text('Text Recognition'),
             onPressed: () {
               textRecognition();
             },
           ),
           ListTile(
-            contentPadding: EdgeInsets.fromLTRB(100.0, 500.0, 0.0, 0.0),
+            contentPadding: EdgeInsets.fromLTRB(80.0, 400.0, 0.0, 0.0),
             leading: Icon(Icons.all_out),
             title: Text(
               'Sign out',
