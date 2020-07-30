@@ -46,6 +46,8 @@ dependencies:
   translator:
   image_cropper:
   esys_flutter_share:
+  flutter_tts:  
+  
   
   
   
@@ -58,6 +60,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
    
   cupertino_icons: ^0.1.3 
+  
   
    
 

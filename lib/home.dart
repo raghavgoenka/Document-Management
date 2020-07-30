@@ -11,6 +11,8 @@ import 'package:flushbar/flushbar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:image_cropper/image_cropper.dart';
+import 'textTranslation.dart';
+import 'package:flutter/cupertino.dart';
 
 class HomeView extends StatefulWidget {
   final String userEmail;
@@ -132,11 +134,6 @@ class _HomeViewState extends State<HomeView> {
       }
     }
     modalBottomSheet(da);
-    // GoogleTranslator translator = GoogleTranslator();
-
-    // translator.translate(da, to: "en").then((output) {
-    //   modalBottomSheet(output);
-    // });
   }
 
   void modalBottomSheet(data) {
@@ -191,18 +188,29 @@ class _HomeViewState extends State<HomeView> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.fromLTRB(15.0, 0.0, 0.0, 220.0),
                     height: MediaQuery.of(context).size.height * 0.495,
                     color: Colors.blueGrey,
-                    child: Row(
-                      children: <Widget>[
-                        Text(data.toString().substring(0, 20),
-                            overflow: TextOverflow.visible,
-                            style: TextStyle(
-                              fontSize: 10.0,
-                              color: Colors.white,
-                            )),
-                      ],
+                    // child: Row(
+                    //   children: <Widget>[
+
+                    //     Text(data.toString().substring(0, 20),
+                    //         overflow: TextOverflow.visible,
+                    //         style: TextStyle(
+                    //           fontSize: 10.0,
+                    //           color: Colors.white,
+                    //         )),
+                    //   ],
+                    // ),
+                    child: CupertinoTextField(
+                      placeholder: data,
+                      textAlign: TextAlign.justify,
+                      maxLines: 20,
+                      style: TextStyle(
+                        fontFamily: 'fonty',
+                        color: Colors.black,
+                        fontSize: 20.0,
+                      ),
+                      padding: EdgeInsets.all(10.0),
                     ),
                   ),
                 ],
@@ -337,8 +345,20 @@ class _HomeViewState extends State<HomeView> {
               textRecognition();
             },
           ),
+          RaisedButton.icon(
+            icon: Icon(Icons.g_translate),
+            elevation: 0,
+            color: Colors.green[400],
+            label: Text('Text Translation'),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => TextTranslation()),
+              );
+            },
+          ),
           ListTile(
-            contentPadding: EdgeInsets.fromLTRB(80.0, 400.0, 0.0, 0.0),
+            contentPadding: EdgeInsets.fromLTRB(80.0, 100.0, 0.0, 0.0),
             leading: Icon(Icons.all_out),
             title: Text(
               'Sign out',
@@ -478,18 +498,4 @@ class _HomeViewState extends State<HomeView> {
     );
     return scaffold;
   }
-
-  // Widget enableTextRecognition() {
-  //   return AlertDialog(
-  //     title: Text("Choose the option"),
-  //     actions: <Widget>[
-  //       FlatButton(
-  //           onPressed: () => Navigator.pop(context, false),
-  //           child: Text("Camera")),
-  //       FlatButton(
-  //           onPressed: () => Navigator.pop(context, true),
-  //           child: Text("Gallery"))
-  //     ],
-  //   );
-  // }
 }
