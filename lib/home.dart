@@ -87,15 +87,36 @@ class _HomeViewState extends State<HomeView> {
     a = prefs.getString('_image');
   }
 
-  deleteSubject(mySubject) {
+  deleteSubject(mySubject, subjectName) {
     print(mySubject);
+    print(subjectName);
 
     Firestore.instance
         .collection(userEmail)
         .document("subjects")
-        .collection("NewSubject")
-        .document(mySubject.documentId)
-        .delete();
+        .collection("NewSubjects")
+        .document(mySubject)
+        .delete()
+        .then((value) {
+      setState(() {
+        getSubject();
+      });
+    }).catchError((e) {
+      print(e);
+    });
+    Firestore.instance
+        .collection(userEmail)
+        .document(subjectName)
+        .collection('pdfs')
+        .getDocuments()
+        .then((snapshot) {
+      for (DocumentSnapshot ds in snapshot.documents) {
+        ds.reference.delete();
+      }
+      print("yes");
+    }).catchError((e) {
+      print(e);
+    });
   }
 
   picked(File image) async {
@@ -171,7 +192,7 @@ class _HomeViewState extends State<HomeView> {
                   ),
                   Container(
                     padding: EdgeInsets.fromLTRB(15.0, 0.0, 0.0, 220.0),
-                    height: 400,
+                    height: MediaQuery.of(context).size.height * 0.495,
                     color: Colors.blueGrey,
                     child: Row(
                       children: <Widget>[
@@ -412,15 +433,24 @@ class _HomeViewState extends State<HomeView> {
                                                 userEmail)),
                                       );
                                     },
-                                    onLongPress: () {
-                                      deleteSubject(
-                                        snapshot.data[index].data['Subject'],
-                                      );
-                                    },
-                                    leading: InkWell(
-                                      splashColor: Colors.amber,
-                                      // onTap: deleteSubject("MAths"),
-                                      child: Icon(Icons.delete, size: 50),
+                                    leading: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: <Widget>[
+                                        IconButton(
+                                          icon: Icon(
+                                            Icons.delete_outline,
+                                            size: 25.0,
+                                            color: Colors.pink[700],
+                                          ),
+                                          onPressed: () {
+                                            deleteSubject(
+                                              snapshot.data[index].documentID,
+                                              snapshot
+                                                  .data[index].data['Subject'],
+                                            );
+                                          },
+                                        ),
+                                      ],
                                     ),
                                     trailing: new PopupMenuButton(
                                       itemBuilder: (BuildContext context) =>
@@ -430,7 +460,8 @@ class _HomeViewState extends State<HomeView> {
                                     ),
                                     title: Text(snapshot
                                         .data[index].data['Subject']
-                                        .toString()),
+                                        .toString()
+                                        .toUpperCase()),
                                   ),
                                 )
                               ],
