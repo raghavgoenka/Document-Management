@@ -6,13 +6,12 @@ import 'main.dart';
 import 'package:flutter/material.dart';
 import 'home.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Service {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   final Firestore firestore = Firestore.instance;
-  final FirebaseMessaging firebaseMessaging = FirebaseMessaging();
+
   GoogleSignIn googleSignIn = new GoogleSignIn();
 //Email n password Sign Up
   String message = "";

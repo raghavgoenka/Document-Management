@@ -30,18 +30,12 @@ dependencies:
   file_picker:
   progress_button: 
   firebase_database: 
-  firebase_messaging:
-  
-  http:
-  flutter_full_pdf_viewer:
   flutter_plugin_pdf_viewer:
   fluttertoast:
-  connectivity:  
-  flutter_pdfview:
   google_sign_in:
   rflutter_alert:
   shared_preferences:
-  device_preview:
+  connectivity:
   firebase_ml_vision:
   translator:
   image_cropper:

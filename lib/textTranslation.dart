@@ -31,7 +31,8 @@ class _TextState extends State<TextTranslation> {
     print("111111111111111111");
 
     print(await flutterTts.getLanguages);
-    await flutterTts.setLanguage("kn-IN");
+    await flutterTts.setLanguage("en-US");
+
     await flutterTts.speak(hindi);
   }
 
@@ -46,63 +47,7 @@ class _TextState extends State<TextTranslation> {
     "Kannada"
   ];
   List<String> languageCode = ["", "et", "ru", "es", "fr", "hi", "gu", "kn"];
-  List<String> voiceCode = [
-    "ko-KR",
-    "ru-RU",
-    "zh-TW",
-    "hu-HU",
-    "th-TH",
-    "nb-NO",
-    "da-DK",
-    "tr-TR",
-    "et-EE",
-    "bs",
-    "sw",
-    "pt-PT",
-    "vi-VN",
-    "en-US",
-    "sv-SE",
-    "su-ID",
-    "bn-BD",
-    "el-GR",
-    "hi-IN",
-    "fi-FI",
-    "km-KH",
-    "bn-IN",
-    "fr-FR",
-    "uk-UA",
-    "en-AU",
-    "nl-NL",
-    "fr-CA",
-    "sr",
-    "pt-BR",
-    "si-LK",
-    "de-DE",
-    "ku",
-    "cs-CZ",
-    "pl-PL",
-    "sk-SK",
-    "fil-PH",
-    "it-IT",
-    "ne-NP",
-    "hr",
-    "en-NG",
-    "zh-CN",
-    "es-ES",
-    "cy",
-    "ja-JP",
-    "sq",
-    "yue-HK",
-    "en-IN",
-    "es-US",
-    "jv-ID",
-    "la",
-    "id-ID",
-    "ro-RO",
-    "ca",
-    "ta",
-    "en-GB"
-  ];
+
   String toLanguage = "";
 
   String text;

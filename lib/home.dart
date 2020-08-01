@@ -13,6 +13,7 @@ import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'textTranslation.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:translator/translator.dart';
 
 class HomeView extends StatefulWidget {
   final String userEmail;
@@ -85,7 +86,7 @@ class _HomeViewState extends State<HomeView> {
     prefs.setString('_image', _image.path);
     prefs.setString('checkEmail', userEmail);
     print(".................................");
-    // if (prefs.getString('checkEmail') == userEmail) {
+
     a = prefs.getString('_image');
   }
 
@@ -123,6 +124,7 @@ class _HomeViewState extends State<HomeView> {
 
   picked(File image) async {
     String da = "";
+    String res = "";
     FirebaseVisionImage ourImage = FirebaseVisionImage.fromFile(image);
     TextRecognizer readText = FirebaseVision.instance.textRecognizer();
     VisionText text = await readText.processImage(ourImage);
@@ -133,7 +135,16 @@ class _HomeViewState extends State<HomeView> {
         }
       }
     }
-    modalBottomSheet(da);
+    GoogleTranslator translator = GoogleTranslator();
+
+    translator.translate(da, to: "en").then((output) {
+      setState(() {
+        res = output;
+        print("////////");
+        print(res);
+        modalBottomSheet(res);
+      });
+    });
   }
 
   void modalBottomSheet(data) {
@@ -188,19 +199,8 @@ class _HomeViewState extends State<HomeView> {
                     ),
                   ),
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.495,
+                    height: MediaQuery.of(context).size.height * 0.479,
                     color: Colors.blueGrey,
-                    // child: Row(
-                    //   children: <Widget>[
-
-                    //     Text(data.toString().substring(0, 20),
-                    //         overflow: TextOverflow.visible,
-                    //         style: TextStyle(
-                    //           fontSize: 10.0,
-                    //           color: Colors.white,
-                    //         )),
-                    //   ],
-                    // ),
                     child: CupertinoTextField(
                       placeholder: data,
                       textAlign: TextAlign.justify,
@@ -357,8 +357,9 @@ class _HomeViewState extends State<HomeView> {
               );
             },
           ),
+          SizedBox(height: 400.0),
           ListTile(
-            contentPadding: EdgeInsets.fromLTRB(80.0, 100.0, 0.0, 0.0),
+            contentPadding: EdgeInsets.fromLTRB(60.0, 0.0, 0.0, 0.0),
             leading: Icon(Icons.all_out),
             title: Text(
               'Sign out',
@@ -419,8 +420,6 @@ class _HomeViewState extends State<HomeView> {
                 borderRadius: BorderRadius.all(Radius.circular(30)),
                 color: Colors.grey[300],
               ),
-
-              //
               child: FutureBuilder(
                 future: getSubject(),
                 builder: (context, snapshot) {
@@ -443,16 +442,7 @@ class _HomeViewState extends State<HomeView> {
                                   message: "Click Here to get and upload notes",
                                   child: ListTile(
                                     hoverColor: Colors.amber,
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => new Subject(
-                                                snapshot.data[index]
-                                                    .data['Subject'],
-                                                userEmail)),
-                                      );
-                                    },
+                                    onTap: () {},
                                     leading: Row(
                                       mainAxisSize: MainAxisSize.min,
                                       children: <Widget>[
@@ -472,11 +462,28 @@ class _HomeViewState extends State<HomeView> {
                                         ),
                                       ],
                                     ),
-                                    trailing: new PopupMenuButton(
-                                      itemBuilder: (BuildContext context) =>
-                                          snapshot.data,
-                                      icon: Icon(Icons.arrow_forward_ios),
-                                      tooltip: "Tap me to See notes",
+                                    trailing: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: <Widget>[
+                                        IconButton(
+                                          icon: Icon(
+                                            Icons.arrow_forward_ios,
+                                            size: 25.0,
+                                            color: Colors.brown[900],
+                                          ),
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      new Subject(
+                                                          snapshot.data[index]
+                                                              .data['Subject'],
+                                                          userEmail)),
+                                            );
+                                          },
+                                        ),
+                                      ],
                                     ),
                                     title: Text(snapshot
                                         .data[index].data['Subject']

@@ -92,11 +92,6 @@ class _SubjectData extends State<Subject> {
             message: "upload successfull",
             duration: Duration(seconds: 3),
           )..show(context);
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(
-          //       builder: (context) => Subject(indexSubject, emailofUser)),
-          // );
         } else {
           Flushbar(
             forwardAnimationCurve: Curves.decelerate,
@@ -226,7 +221,7 @@ class _SubjectData extends State<Subject> {
 
                               Share.text('File Sharing', path, 'text');
                             },
-                            leading: Icon(Icons.note, size: 50),
+                            leading: Icon(Icons.note, size: 30),
                             title: Text(snapshot.data[index].data['FileName']
                                 .toString()),
                             subtitle: Text(indexSubject),

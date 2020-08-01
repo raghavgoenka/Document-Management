@@ -15,16 +15,11 @@ void main() async {
   var loginStatus = prefs.getString('loginStatus');
   var username = prefs.getString('username');
 
-  runApp(
-      // DevicePreview(
-      //     enabled: true,
-      //     builder: (context) =>
-      MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: loginStatus == null
-              ? MyHomePage()
-              : HomeView(loginStatus, username)));
-  // );
+  runApp(MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: loginStatus == null
+          ? MyHomePage()
+          : HomeView(loginStatus, username)));
 }
 
 class MyApp extends StatelessWidget {
@@ -33,10 +28,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-
-      // locale: DevicePreview.of(context).locale,
-      // builder: DevicePreview.appBuilder,
-      // home: MyHomePage(),
     );
   }
 }
@@ -84,7 +75,6 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     super.initState();
     checkStatus();
-    //Connectivity response
   }
 
   Widget build(BuildContext context) {
