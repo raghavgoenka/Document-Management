@@ -20,7 +20,7 @@ class _MyState extends State<My> {
     initPlatformState();
     // print(pdfUrl);
 
-    PdftronFlutter.openDocument(pdfUrl);
+    PdftronFlutter.openDocument(pdfUrl + ".pdf");
   }
 
   Future<void> initPlatformState() async {

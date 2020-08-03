@@ -28,11 +28,10 @@ class _SubjectData extends State<Subject> {
   TextEditingController nameFileController = TextEditingController();
   Future getImage() async {
     File file = await FilePicker.getFile();
-    // RegExp re = new RegExp(r'(.+\.pdf)');
-    // print(file.toString());
-    // print('Has match: ${re.hasMatch(file.toString())}');
-    bool value = true;
-    // re.hasMatch(file.toString());
+    RegExp re = new RegExp(r'(.+\.pdf)');
+    print(file.toString());
+    print('Has match: ${re.hasMatch(file.toString())}');
+    bool value = re.hasMatch(file.toString());
     if (value == false) {
       Alert(
         context: context,
@@ -82,6 +81,7 @@ class _SubjectData extends State<Subject> {
               .then((value) {})
               .catchError((e) {
                 print(e);
+                print("/////////////////");
               });
           nameFileController.text = "";
 
@@ -204,6 +204,8 @@ class _SubjectData extends State<Subject> {
                   itemCount: snapshot.data.length,
                   itemBuilder: (context, index) {
                     return Card(
+                      elevation: 5,
+                      margin: EdgeInsets.all(10.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
