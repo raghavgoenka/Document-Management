@@ -6,7 +6,6 @@ import 'package:file_picker/file_picker.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'try.dart';
 
 class Subject extends StatefulWidget {
@@ -219,12 +218,7 @@ class _SubjectData extends State<Subject> {
                               );
                             },
                             // snapshot.data[index].data['Url'])
-                            onLongPress: () {
-                              final String path =
-                                  snapshot.data[index].data['Url'];
 
-                              Share.text('File Sharing', path, 'text');
-                            },
                             leading: Icon(Icons.note, size: 30),
                             title: Text(snapshot.data[index].data['FileName']
                                 .toString()),
