@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flushbar/flushbar.dart';
-import 'usermanagement.dart';
 import 'main.dart';
 import 'package:flutter/material.dart';
 import 'home.dart';
@@ -25,7 +24,19 @@ class Service {
             email: _email.trim(), password: _password.trim())
         .then((signedUser) {
       print(message);
-      UserManagement().storeNewUser(signedUser.user, context, username);
+
+      Firestore.instance
+          .collection('/users')
+          .add({
+            'email': signedUser.user.email,
+            'uid': signedUser.user.uid,
+            'username': username
+          })
+          .then((value) {})
+          .catchError((e) {
+            print(e);
+            print("usermanagement");
+          });
 
       _email = "";
       _password = "";

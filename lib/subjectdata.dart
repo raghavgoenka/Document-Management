@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
-import 'pdf_viewer.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:esys_flutter_share/esys_flutter_share.dart';
+import 'try.dart';
 
 class Subject extends StatefulWidget {
   final String indexSubject;
@@ -28,10 +28,11 @@ class _SubjectData extends State<Subject> {
   TextEditingController nameFileController = TextEditingController();
   Future getImage() async {
     File file = await FilePicker.getFile();
-    RegExp re = new RegExp(r'(.+\.pdf)');
-    print(file.toString());
-    print('Has match: ${re.hasMatch(file.toString())}');
-    bool value = re.hasMatch(file.toString());
+    // RegExp re = new RegExp(r'(.+\.pdf)');
+    // print(file.toString());
+    // print('Has match: ${re.hasMatch(file.toString())}');
+    bool value = true;
+    // re.hasMatch(file.toString());
     if (value == false) {
       Alert(
         context: context,
@@ -211,10 +212,11 @@ class _SubjectData extends State<Subject> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => new PdfView(
+                                    builder: (context) => new My(
                                         snapshot.data[index].data['Url'])),
                               );
                             },
+                            // snapshot.data[index].data['Url'])
                             onLongPress: () {
                               final String path =
                                   snapshot.data[index].data['Url'];

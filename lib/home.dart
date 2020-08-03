@@ -14,6 +14,7 @@ import 'package:image_cropper/image_cropper.dart';
 import 'textTranslation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:translator/translator.dart';
+import 'pdf_viewer.dart';
 
 class HomeView extends StatefulWidget {
   final String userEmail;
@@ -67,7 +68,6 @@ class _HomeViewState extends State<HomeView> {
         .document('subjects')
         .collection('NewSubjects')
         .getDocuments();
-
     return qn.documents;
   }
 
