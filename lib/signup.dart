@@ -112,52 +112,6 @@ class _SignupPageState extends State<SignupPage> {
                         onTap: () {
                           Service().createUser(
                               _email, _password, nameController.text, context);
-                          // FirebaseAuth.instance
-                          //     .createUserWithEmailAndPassword(
-                          //         email: _email.trim(),
-                          //         password: _password.trim())
-                          //     .then((signedUser) {
-                          //   print('///////////');
-
-                          //   UserManagement().storeNewUser(
-                          //       signedUser.user, context, nameController.text);
-
-                          //   _email = "";
-                          //   _password = "";
-                          //   Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => MainScreen()),
-                          //   );
-                          //   Flushbar(
-                          //     flushbarPosition: FlushbarPosition.TOP,
-                          //     forwardAnimationCurve: Curves.decelerate,
-                          //     reverseAnimationCurve: Curves.easeOut,
-                          //     title: "Success",
-                          //     backgroundColor: Colors.blueGrey,
-                          //     message: 'Sign Up Successfull ',
-                          //     duration: Duration(seconds: 5),
-                          //   )..show(context);
-                          // }).catchError((e) {
-                          //   print("the error1:");
-                          //   print(e.toString());
-                          //   print('signuperoorrrrrrr1');
-
-                          //   Flushbar(
-                          //     flushbarPosition: FlushbarPosition.TOP,
-                          //     forwardAnimationCurve: Curves.decelerate,
-                          //     reverseAnimationCurve: Curves.easeOut,
-                          //     title: "Error",
-                          //     backgroundColor: Colors.black26,
-                          //     message: e.toString(),
-                          //     icon: Icon(
-                          //       Icons.info_outline,
-                          //       size: 28.0,
-                          //       color: Colors.blue[300],
-                          //     ),
-                          //     duration: Duration(seconds: 3),
-                          //   )..show(context);
-                          // });
                         },
                         child: Center(
                           child: Text(

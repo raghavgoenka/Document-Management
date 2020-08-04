@@ -17,7 +17,7 @@ class Service {
   String userUsername = '';
   createUser(String _email, String _password, String username, context) {
     print(_email);
-    // userUsername = username;
+
     print("/////////////////" + userUsername);
     FirebaseAuth.instance
         .createUserWithEmailAndPassword(

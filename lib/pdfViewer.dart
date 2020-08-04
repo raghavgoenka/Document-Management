@@ -18,7 +18,6 @@ class _MyState extends State<My> {
   void initState() {
     super.initState();
     initPlatformState();
-    // print(pdfUrl);
 
     PdftronFlutter.openDocument(pdfUrl + ".pdf");
   }

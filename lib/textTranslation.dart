@@ -28,8 +28,6 @@ class _TextState extends State<TextTranslation> {
   }
 
   Future textToSpeech(words) async {
-    print("111111111111111111");
-
     print(await flutterTts.getLanguages);
     await flutterTts.setLanguage("en-US");
 
@@ -45,8 +43,19 @@ class _TextState extends State<TextTranslation> {
     "Hindi",
     "Gujarati",
     "Kannada"
+        "English"
   ];
-  List<String> languageCode = ["", "et", "ru", "es", "fr", "hi", "gu", "kn"];
+  List<String> languageCode = [
+    "",
+    "et",
+    "ru",
+    "es",
+    "fr",
+    "hi",
+    "gu",
+    "kn",
+    "en"
+  ];
 
   String toLanguage = "";
 

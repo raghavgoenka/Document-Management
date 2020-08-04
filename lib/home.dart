@@ -84,7 +84,6 @@ class _HomeViewState extends State<HomeView> {
     print(_image);
     prefs.setString('_image', _image.path);
     prefs.setString('checkEmail', userEmail);
-    print(".................................");
 
     a = prefs.getString('_image');
   }

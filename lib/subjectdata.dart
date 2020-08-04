@@ -6,7 +6,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import 'try.dart';
+import 'pdfViewer.dart';
 
 class Subject extends StatefulWidget {
   final String indexSubject;
@@ -80,7 +80,6 @@ class _SubjectData extends State<Subject> {
               .then((value) {})
               .catchError((e) {
                 print(e);
-                print("/////////////////");
               });
           nameFileController.text = "";
 
