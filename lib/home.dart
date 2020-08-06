@@ -138,7 +138,7 @@ class _HomeViewState extends State<HomeView> {
     translator.translate(da, to: "en").then((output) {
       setState(() {
         res = output;
-        print("////////");
+
         print(res);
         modalBottomSheet(res);
       });

@@ -167,6 +167,7 @@ class _SubjectData extends State<Subject> {
       DeviceOrientation.portraitUp,
     ]);
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         title: Text(indexSubject.toUpperCase() + " Notes"),
       ),

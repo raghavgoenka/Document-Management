@@ -2,8 +2,8 @@ import 'package:connectivity/connectivity.dart';
 import 'package:flutter/services.dart';
 import 'package:myapp/firebase.dart';
 import 'package:myapp/home.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 import 'signup.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:splashscreen/splashscreen.dart';
@@ -202,14 +202,13 @@ class _MainScreenState extends State<MainScreen> {
                             });
                           },
                           child: Center(
-                            // child: Text(
-                            //   "LOGIN",
-                            //   style: TextStyle(
-                            //       color: Colors.white,
-                            //       fontWeight: FontWeight.bold,
-                            //       fontFamily: 'Montserrat'),
-                            // ),
-                            child: setUpButtonChild(),
+                            child: Text(
+                              "LOGIN",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Montserrat'),
+                            ),
                           ),
                         )),
                   ),
@@ -288,35 +287,19 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
-  Widget setUpButtonChild() {
-    if (_state == 0) {
-      return new Text(
-        "LOGIN",
-        style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Montserrat'),
-      );
-    } else if (_state == 1) {
-      return CircularProgressIndicator(
-        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-      );
-    } else {
-      return Icon(Icons.check, color: Colors.white);
-    }
-  }
-
   void checkStatus() {
     Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
       if (result == ConnectivityResult.mobile ||
           result == ConnectivityResult.wifi) {
       } else {
-        Alert(
-          context: context,
-          title: "Internet",
-          desc: " Seems like u r not connected to internet",
-          type: AlertType.warning,
-        ).show();
+        Fluttertoast.showToast(
+            msg: "Internet is not connected!",
+            toastLength: Toast.LENGTH_LONG,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.black,
+            textColor: Colors.white,
+            fontSize: 16.0);
       }
     });
   }

@@ -38,6 +38,7 @@ dependencies:
   translator:
   image_cropper:
   flutter_tts:
+  fluttertoast:
   pdftron_flutter:
     git:
       url: git://github.com/PDFTron/pdftron-flutter.git   
