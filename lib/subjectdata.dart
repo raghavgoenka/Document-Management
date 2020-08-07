@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
+
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'pdfViewer.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Subject extends StatefulWidget {
   final String indexSubject;
@@ -17,6 +19,7 @@ class Subject extends StatefulWidget {
 }
 
 class _SubjectData extends State<Subject> {
+  final picker = ImagePicker();
   String indexSubject;
   String emailofUser;
   bool visible = false;
