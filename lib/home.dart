@@ -133,6 +133,7 @@ class _HomeViewState extends State<HomeView> {
         }
       }
     }
+
     GoogleTranslator translator = GoogleTranslator();
 
     translator.translate(da, to: "en").then((output) {
