@@ -1,7 +1,8 @@
 # Document Management App
 
 A new Flutter project.
-This app helps you to store your pdf according to the subject that you provide.
+1-This app helps you to store your pdf according to the subject that you provide.
+2-OCR feature is also provided to recognise text in images and copy for sharing feature.
 
 ## Getting Started
 
